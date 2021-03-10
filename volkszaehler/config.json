@@ -1,0 +1,16 @@
+{
+    "name": "Volkszaehler Middleware",
+    "version": "1",
+    "slug": "volkszaehler-middleware",
+    "description": "The middleware for the famous volkszaehler.",
+    "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+    "startup": "application",
+    "boot": "auto",
+    "options": {},
+    "schema": {},
+    "ports": {
+        "8080/tcp": 8080,
+        "8052/tcp": 8052,
+        "5582/tcp": 5582
+      }
+  }
