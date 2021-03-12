@@ -3,9 +3,15 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
+COPY init.sh ./
+COPY start.sh ./
+
+COPY init.sql /sql/init.sql
+
 WORKDIR /vz
 
 RUN apk add --no-cache \
+        mariadb-client=10.5.8-r0 \
         python3 \
         postgresql-dev \
         nginx=1.18.0-r13 \
@@ -37,14 +43,12 @@ RUN apk add --no-cache \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
     && composer install --no-ansi --no-scripts --no-dev --no-interaction --no-progress --optimize-autoloader \
     && cp ./etc/config.dist.yaml ./etc/config.yaml \
-    && sed -i "s/host: localhost/host: core-mariadb/" ./etc/config.yaml
-
+    && sed -i "s/url: 'api'/url: '',/" ./htdocs/js/options.js
 
 WORKDIR /
-
 
 EXPOSE 8080
 EXPOSE 8082
 EXPOSE 5582
 
-CMD /vz/vendor/bin/ppm start -c /vz/etc/middleware.json --static-directory /vz/htdocs --cgi-path=php
+CMD /start.sh

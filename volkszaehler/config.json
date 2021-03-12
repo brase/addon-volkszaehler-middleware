@@ -1,11 +1,11 @@
 {
     "name": "Volkszaehler Middleware",
-    "version": "1",
+    "version": "dev",
     "slug": "volkszaehler-middleware",
     "description": "The middleware for the famous volkszaehler.",
-    "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
-    "startup": "application",
-    "boot": "auto",
+    "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
+    "services": ["mysql:need"],
+    "hassio_api": true,
     "options": {},
     "schema": {},
     "ports": {
