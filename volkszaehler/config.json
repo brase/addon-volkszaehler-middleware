@@ -8,6 +8,7 @@
     "hassio_api": true,
     "options": {},
     "schema": {},
+    "stage": "experimental",
     "ports": {
         "8080/tcp": 8080,
         "8052/tcp": 8052,
